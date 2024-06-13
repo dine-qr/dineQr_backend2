@@ -1,0 +1,106 @@
+{% load i18n %}
+{% block subject %}
+{% blocktrans %}Order Receipt {% endblocktrans %}
+{% endblock subject %} 
+{% block html_body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .receipt-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .company-logo {
+            text-align: center;
+            padding: 20px 0;
+        }
+        .company-logo img {
+            max-width: 150px;
+            height: auto;
+        }
+        .order-details {
+            padding: 20px;
+            border-top: 2px solid #ED330C;
+        }
+        .order-details h3 {
+            color: #ED330C;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        .order-item {
+            padding: 10px 20px;
+            border-bottom: 1px solid #dddddd;
+        }
+        .order-item:last-child {
+            border-bottom: none;
+        }
+        .order-item h4 {
+            margin: 5px 0;
+            font-size: 1em;
+            color: #333333;
+        }
+        .order-item p {
+            margin: 5px 0;
+            color: #666666;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 2px solid #ED330C;
+            color: #888888;
+        }
+        .footer p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="receipt-container">
+        <div class="company-logo">
+            <img src="https://res.cloudinary.com/drptetjbw/image/upload/v1702138962/red_logo_n21s0m.png" alt="Dineqr Logo">
+        </div>
+        <div class="order-details">
+            <h3>{% blocktrans %}Order Details{% endblocktrans %}</h3>
+            <p><strong>{% blocktrans %}Name{% endblocktrans %}:</strong> {{ name }}</p>
+            <p><strong>{% blocktrans %}Email{% endblocktrans %}:</strong> {{ email }}</p>
+            <p><strong>{% blocktrans %}Restaurant{% endblocktrans %}:</strong> {{ restaurant_name }}</p>
+            <p><strong>{% blocktrans %}Order Key{% endblocktrans %}:</strong> {{ cart.key }}</p>
+            <p><strong>{% blocktrans %}Tip{% endblocktrans %}:</strong> {{ cart.tip }}</p>
+            <p><strong>{% blocktrans %}Order Type{% endblocktrans %}:</strong> {{ cart.order_type }}</p>
+            <p><strong>{% blocktrans %}Total Price{% endblocktrans %}:</strong> {{ cart.total_price }}</p>
+            <p><strong>{% blocktrans %}Date{% endblocktrans %}:</strong> {{ cart.date }}</p>
+            <p><strong>{% blocktrans %}Phone{% endblocktrans %}:</strong> {{ cart.phone }}</p>
+            <p><strong>{% blocktrans %}Is Paid{% endblocktrans %}:</strong> {{ cart.is_paid }}</p>
+        </div>
+        <div class="order-items">
+            <h3>{% blocktrans %}Order Items{% endblocktrans %}</h3>
+            {% for order in orders %}
+            <div class="order-item">
+                <h4>{% blocktrans %}Food Item{% endblocktrans %}: {{ order.food_item.name }}</h4>
+                <p><strong>{% blocktrans %}Quantity{% endblocktrans %}:</strong> {{ order.quantity }}</p>
+                <p><strong>{% blocktrans %}Price{% endblocktrans %}:</strong> {{ order.price }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="footer">
+            <p>{% blocktrans %}Thank you for your order!{% endblocktrans %}</p>
+            <p>{% blocktrans %}Follow us on social media for updates{% endblocktrans %}</p>
+        </div>
+    </div>
+</body>
+</html>
+
+{% endblock html_body %}

@@ -1,0 +1,129 @@
+
+{% load i18n %}
+{% block subject %}
+{% blocktrans %}Thank You For Contacting Us {{ name }} {% endblocktrans %}
+{% endblock subject %} 
+{% block html_body %}
+
+<!DOCTYPE html>
+<html lang="en">
+   
+    
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                padding: 20px;
+                margin: 0;
+            }
+    
+            .email-container {
+                max-width: 600px;
+                margin: 0 auto;
+                background-color: #fff;
+                padding: 30px;
+                border-radius: 5px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+    
+            .thank-you {
+                color: #0056b3;
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+    
+            .message {
+                font-size: 16px;
+                line-height: 1.6;
+                margin-bottom: 30px;
+            }
+    
+            .signature {
+                margin-top: 20px;
+                font-style: italic;
+                color: #888;
+            }
+    
+            /* Footer styles */
+            .footer {
+                text-align: center;
+                margin-top: 40px;
+                padding-top: 20px;
+                border-top: 1px solid #ddd;
+            }
+    
+            .social-icons {
+                list-style: none;
+                padding: 0;
+                margin: 10px 0;
+            }
+    
+            .social-icons li {
+                display: inline-block;
+                margin: 0 5px;
+            }
+    
+            .social-icons li a {
+                display: block;
+                width: 30px;
+                height: 30px;
+                line-height: 30px;
+                text-align: center;
+                border-radius: 50%;
+                {% comment %} background-color: #0056b3; {% endcomment %}
+                color: #fff;
+            }
+    
+            .company-logo {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+    
+            .company-logo img {
+                max-width: 200px;
+                height: auto;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class="email-container">
+            <div class="company-logo">
+                <img src="https://res.cloudinary.com/drptetjbw/image/upload/v1702138962/red_logo_n21s0m.png" alt="Dineqr Logo">
+            </div>
+    
+            <p class="text-body">
+                {% block text_body %}
+                Dear {{ name }},
+                <br><br>
+                Thank you for contacting us! We have received your message:
+                <br><br>
+                <span class="message">"{{ message }}"</span>
+                <br><br>
+                Our team is currently working on responding as promptly as we can.
+                <br><br>
+                Thank you for contacting DineQr.
+                <br><br>
+                Best Regards,
+                <br>
+                Support
+                {% endblock text_body %}
+            </p>
+    
+            <div class="footer">
+                <ul class="social-icons">
+                    <li><a href="#linkeldn_link"><img src="https://res.cloudinary.com/drptetjbw/image/upload/v1702138192/linkedin_bwdzk7.jpg" alt="linkeldn" style="width: 45px; height: 45px; border-radius: 50%;"></a></li>
+                    <li><a href="#facebook_link"><img src="https://res.cloudinary.com/drptetjbw/image/upload/v1702138193/facebookicon_wycb2j.jpg" alt="facebook" style="width: 30px; height: 30px; border-radius: 50%;"></a></li>
+                    <li><a href="#instagram_link"><img src="https://res.cloudinary.com/drptetjbw/image/upload/v1702138195/instagram_agw2c5.png" alt="Instagram" style="width: 30px; height: 30px; border-radius: 50%;"></a></li>
+
+                </ul>
+                <p class="signature">Follow us on social media for updates</p>
+            </div>
+        </div>
+    </body>
+    
+    </html>
+    {% endblock html_body %}
+    
